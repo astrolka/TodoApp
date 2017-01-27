@@ -1,0 +1,32 @@
+<h1>Задачи</h1><br><br>
+
+<% @projects.each do |project| %>
+
+	<h2><%= project.title %></h2>
+
+	<ul>
+	<% project.todos.each do |todo| %>
+		<li><%= todo.text %></li>
+	<% end %>
+	</ul>
+
+<% end %>
+<br><br>
+
+
+
+<div>
+	<h2>Новая задача</h2>
+	<%= form_for :todo do |f| %>
+
+		<p>
+			<%= f.text_field :text, placeholder:"Название задачи..."%>
+		</p>
+
+		<p>
+			<%= f.collection_select(:project, Project.all, :id, :title) %>
+		</p>
+
+	<% end %>
+
+</div>
