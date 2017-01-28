@@ -13,11 +13,13 @@
 <% end %>
 <br><br>
 
-
-
 <div>
+  <button id="show_btn" class="showDiv"><%=image_tag("addTodoIcon.png")%></button>
+</div>
+
+<div id="new_todo_div" style="display:none;">
 	<h2>Новая задача</h2>
-	<%= form_for :todo do |f| %>
+	<%= form_for :todo, url: {action: "create"} do |f| %>
 
 		<p>
 			<%= f.text_field :text, placeholder:"Название задачи..."%>
@@ -26,7 +28,8 @@
 		<p>
 			<%= f.collection_select(:project, Project.all, :id, :title) %>
 		</p>
-
+      <a href="javascript:undefined" class="hideDiv">ОТМЕНА</a>
+      <a href="javascript:undefined" >OK</a>
 	<% end %>
 
 </div>
