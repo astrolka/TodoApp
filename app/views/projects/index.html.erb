@@ -22,7 +22,7 @@
 	<h2>Новая задача</h2>
   <%= form_for :project, method: :patch do |f| %>
 
-      <%= f.fields_for :todos do |todo_form| %>
+      <%= f.fields_for :todos_attributes do |todo_form| %>
 
           <p>
             <%= todo_form.text_field :text, placeholder:"Название задачи..."%>
@@ -31,10 +31,10 @@
           <p>
             <%= todo_form.collection_select(:project_id, @projects, :id, :title) %>
           </p>
-
       <% end %>
+
       <a href="javascript:undefined" class="hideDiv">ОТМЕНА</a>
-      <%= link_to "Submit", method: :patch%>
+      <%= link_to "OK", method: :patch%><br>
       <%= f.submit %>
 	<% end %>
 
