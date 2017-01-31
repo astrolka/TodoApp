@@ -20,22 +20,19 @@
 <div id="new_todo_div" style="display:none;">
 
 	<h2>Новая задача</h2>
-  <%= form_for :project, method: :patch do |f| %>
+  <%= form_for(:project, method: :patch, :html => {:class => "new_todo_form"}) do |f| %>
 
-      <%= f.fields_for :todos_attributes do |todo_form| %>
+      <p>
+        <%= f.text_field :text, placeholder:"Название задачи..."%>
+      </p>
 
-          <p>
-            <%= todo_form.text_field :text, placeholder:"Название задачи..."%>
-          </p>
+      <p>
+        <%= f.collection_select(:project_id, @projects, :id, :title) %>
+      </p>
 
-          <p>
-            <%= todo_form.collection_select(:project_id, @projects, :id, :title) %>
-          </p>
-      <% end %>
+      <a href="javascript:undefined" class="hideDiv">ОТМЕНА</a>|
 
-      <a href="javascript:undefined" class="hideDiv">ОТМЕНА</a>
-      <%= link_to "OK", method: :patch%><br>
-      <%= f.submit %>
+      <%= link_to "ОК", "#", :onclick=>"$('.new_todo_form').submit()" %>
 	<% end %>
 
 </div>

@@ -27,5 +27,4 @@ $(document).ready(function() {
         $('#new_todo_div').fadeIn();
         $('#show_btn').slideUp();
     });
-
 });

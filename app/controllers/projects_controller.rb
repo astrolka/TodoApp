@@ -11,14 +11,13 @@ class ProjectsController < ApplicationController
 
   def update
 
-    @project = Project.find(params[:id])
-    @project.update(todo_params)
+    Todo.create(todo_params)
 
     redirect_to root_path
   end
 
   def todo_params
-    params.require(:project).permit(:id, todos_attributes: [:text, :project_id])
+    params.require(:project).permit(:text, :project_id)
   end
     
 end
