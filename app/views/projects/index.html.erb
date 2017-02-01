@@ -13,27 +13,28 @@
 <% end %>
 <br><br>
 
-<div>
-  <button id="show_btn" class="showDiv"><%=image_tag("addTodoIcon.png")%></button>
-</div>
 
-<div id="new_todo_div" style="display:none;">
+<% if @projects.any? %>
+    <div>
+      <button id="show_btn" class="showDiv"><%=image_tag("addTodoIcon.png")%></button>
+    </div>
 
-	<h2>Новая задача</h2>
-  <%= form_for(:project, method: :patch, :html => {:class => "new_todo_form"}) do |f| %>
+    <div id="new_todo_div" style="display:none;">
 
-      <p>
-        <%= f.text_field :text, placeholder:"Название задачи..."%>
-      </p>
+      <h2>Новая задача</h2>
+      <%= form_for([@projects.first, @projects.first.todos.build], :html => {:class => "new_todo_form"}) do |f| %>
 
-      <p>
-        <%= f.collection_select(:project_id, @projects, :id, :title) %>
-      </p>
+          <p>
+            <%= f.text_field :text, placeholder:"Название задачи..."%>
+          </p>
 
-      <a href="javascript:undefined" class="hideDiv">ОТМЕНА</a>|
+          <p>
+            <%= f.collection_select(:project_id, @projects, :id, :title) %>
+          </p>
 
-      <%= link_to "ОК", "#", :onclick=>"$('.new_todo_form').submit()" %>
-	<% end %>
+          <a href="javascript:undefined" class="hideDiv">ОТМЕНА</a>|
 
-</div>
-
+          <%= link_to "ОК", "#", :onclick=>"$('.new_todo_form').submit()" %>
+      <% end %>
+    </div>
+<% end %>
